@@ -1,3 +1,6 @@
 const db = require('../src/db/models');
 
-afterAll(() => db.sequelize.close());
+beforeAll(() => { db.sequelize.sync().then(()=>{ db.sequelize.close(); }) });
+
+// afterAll(() => db.sequelize.close());
+

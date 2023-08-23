@@ -1,7 +1,6 @@
 require('dotenv').config();
 const express = require('express');
 const bodyParser = require('body-parser');
-const http = require('http');
 const cors = require('cors');
 const portfinder = require('portfinder');
 
@@ -26,17 +25,20 @@ const router = require('./src/routes');
 
 app.use('/api/v1', router);
 
-portfinder.getPort((err, port) => {
-	if (err) {
-		console.log(err);
-	} else {
-		app.set('port', port);
-		const server = http.createServer(app);
-		server.listen(port, () => {
-			console.log(`server started at http://127.0.0.1:${port}`);
-			console.log(`server started at http://localhost:${port}`);
-		});
-	}
-});
+async function findPort(start = 8000) {
+	const port = await portfinder.getPortPromise({
+		port: start,
+	});
+	return port;
+}
+
+(async () => {
+	const PORT = process.env.PORT || (await findPort());
+
+	app.listen(PORT, () => {
+		console.log(`Running app at http://localhost:${PORT}`);
+		console.log('Press Ctrl+C to quit.');
+	});
+})();
 
 module.exports = app;

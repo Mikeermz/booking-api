@@ -5,7 +5,7 @@
 	"main": "src/main.js",
 	"scripts": {
 		"dev": "nodemon main",
-		"test": "jest ",
+		"test": "jest --detectOpenHandles",
 		"prettier": "prettier --write .",
 		"eslint": "eslint .",
 		"prepare": "husky install"
@@ -36,8 +36,10 @@
 		"npm": "please-use-yarn"
 	},
 	"jest": {
-    "setupFilesAfterEnv": ["./test/suiteSetup.js"]
-  },
+		"setupFilesAfterEnv": [
+			"./test/suiteSetup.js"
+		]
+	},
 	"dependencies": {
 		"body-parser": "1.20.2",
 		"cors": "2.8.5",
