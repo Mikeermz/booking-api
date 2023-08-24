@@ -1,35 +1,30 @@
 const { Model } = require('sequelize');
 
 module.exports = (sequelize, DataTypes) => {
-	class Diner extends Model {
+	class DinersCuisines extends Model {
 		/**
 		 * Helper method for defining associations.
 		 * This method is not a part of Sequelize lifecycle.
 		 * The `models/index` file will call this method automatically.
 		 */
 		static associate(models) {
-			Diner.hasMany(models.Reservation, {
+			DinersCuisines.belongsTo(models.Diner, {
 				foreignKey: 'dinerId',
 			});
-			Diner.belongsToMany(models.Cuisine, {
+			DinersCuisines.belongsTo(models.Cuisine, {
 				foreignKey: 'cuisineId',
-				through: 'DinersCuisines',
 			});
 		}
 	}
-	Diner.init(
+	DinersCuisines.init(
 		{
-			id: {
-				type: DataTypes.UUID,
-				defaultValue: DataTypes.UUIDV4,
-				primaryKey: true,
-			},
-			fullName: DataTypes.STRING,
+			dinerId: DataTypes.UUID,
+			cuisineId: DataTypes.UUID,
 		},
 		{
 			sequelize,
-			modelName: 'Diner',
+			modelName: 'DinersCuisines',
 		},
 	);
-	return Diner;
+	return DinersCuisines;
 };

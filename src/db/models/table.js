@@ -11,6 +11,10 @@ module.exports = (sequelize, DataTypes) => {
 			Table.hasMany(models.Reservation, {
 				foreignKey: 'tableId',
 			});
+			Table.belongsToMany(models.Restaurant, {
+				foreignKey: 'restaurantId',
+				through: 'RestaurantsTables',
+			});
 		}
 	}
 	Table.init(
