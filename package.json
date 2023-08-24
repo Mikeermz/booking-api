@@ -6,6 +6,8 @@
 	"scripts": {
 		"dev": "nodemon main",
 		"test": "jest --detectOpenHandles",
+		"pretest": "cross-env NODE_ENV=test yarn db:reset",
+		"db:reset": "yarn sequelize db:drop && yarn sequelize db:create && yarn sequelize db:migrate && yarn sequelize db:seed:all --debug",
 		"prettier": "prettier --write .",
 		"eslint": "eslint .",
 		"prepare": "husky install"
@@ -48,12 +50,14 @@
 		"pg": "8.11.3",
 		"pg-hstore": "2.3.4",
 		"portfinder": "1.0.32",
-		"sequelize": "6.32.1"
+		"sequelize": "6.32.1",
+		"uuid": "9.0.0"
 	},
 	"devDependencies": {
 		"@commitlint/cli": "17.7.1",
 		"@commitlint/config-conventional": "17.7.0",
 		"babel-register": "6.26.0",
+		"cross-env": "7.0.3",
 		"eslint": "8.47.0",
 		"eslint-config-airbnb-base": "15.0.0",
 		"eslint-config-prettier": "9.0.0",

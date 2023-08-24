@@ -10,12 +10,12 @@ app.use(cors());
 app.use(bodyParser.json());
 app.use(bodyParser.urlencoded({ extended: false }));
 
-// Models
-const models = require('./src/db/models');
+// // Models
+// const models = require('./src/db/models');
 
-models.sequelize.sync({ force: true, logging: false }).then(() => {
-	models.sequelize.close();
-});
+// models.sequelize.sync().then(() => {
+// 	models.sequelize.close();
+// });
 
 portfinder.basePort = 8000;
 portfinder.highestPort = 9000;
