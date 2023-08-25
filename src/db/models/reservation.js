@@ -28,6 +28,12 @@ module.exports = (sequelize, DataTypes) => {
 			tableId: DataTypes.UUID,
 			dinerId: DataTypes.UUID,
 			time: DataTypes.DATE,
+			date: DataTypes.DATEONLY,
+			active: {
+				type: DataTypes.BOOLEAN,
+				defaultValue: true,
+			},
+			code: DataTypes.STRING,
 		},
 		{
 			sequelize,

@@ -12,7 +12,7 @@ module.exports = (sequelize, DataTypes) => {
 				foreignKey: 'tableId',
 			});
 			Table.belongsToMany(models.Restaurant, {
-				foreignKey: 'restaurantId',
+				foreignKey: 'tableId',
 				through: 'RestaurantsTables',
 			});
 		}

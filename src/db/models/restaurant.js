@@ -9,11 +9,11 @@ module.exports = (sequelize, DataTypes) => {
 		 */
 		static associate(models) {
 			Restaurant.belongsToMany(models.Cuisine, {
-				foreignKey: 'cuisineId',
+				foreignKey: 'restaurantId',
 				through: 'RestaurantsCuisines',
 			});
 			Restaurant.belongsToMany(models.Table, {
-				foreignKey: 'tableId',
+				foreignKey: 'restaurantId',
 				through: 'RestaurantsTables',
 			});
 		}
